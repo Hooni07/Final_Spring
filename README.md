@@ -18,21 +18,52 @@ public class Book {
     @Column(name = "book_name")
     private String bookName;
 
-    @Column(name = "writer")
-    private String writer;
-
     @Column(name = "price")
     private int price;
 
+    @Column(name = "writer")
+    private String writer;
+
+
     // 생성자 생성
-    public Book(String productName, String writer, int price) {
-        this.bookName = productName;
-        this.writer = writer;
+    public Book(String bookName, int price, String writer) {
+        this.bookName = bookName;
         this.price = price;
+        this.writer = writer;
     }
 
     // getter 및 setter(생략)
-    // ...
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
 
 ```
@@ -80,9 +111,9 @@ public interface BookService {
       @Override
       public Optional<Book> findById(Long id){
         try {
-            Optional<Book> productData = bookRepository.findById(id);
-            if(productData.isPresent()) {
-                return productData;
+            Optional<Book> bookData = bookRepository.findById(id);
+            if(bookData.isPresent()) {
+                return bookData;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,14 +126,14 @@ public interface BookService {
       @Override
       public Book update(Long id, Book book){
         try {
-            Optional<Book> productData = bookRepository.findById(id);
-            if(productData.isPresent()) {
-                Book _product = productData.get();
-                _product.setBookName(book.getBookName());
-                _product.setPrice(book.getPrice());
-                _product.setWriter(book.getWriter());
-                bookRepository.save(_product);
-                return _product;
+            Optional<Book> bookData = bookRepository.findById(id);
+            if(bookData.isPresent()) {
+                Book _book = bookData.get();
+                _book.setBookName(book.getBookName());
+                _book.setPrice(book.getPrice());
+                _book.setWriter(book.getWriter());
+                bookRepository.save(_book);
+                return _book;
             } else {
                 return null;
             }
@@ -134,7 +165,7 @@ public class BookController {
     BookServiceImpl bookService;
 
     @GetMapping("/books/{id}")
-    public ResponseEntity<Optional<Book>> getProductById(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Book>> getBookById(@PathVariable("id") long id) {
         try {
             return ResponseEntity.ok(bookService.findById(id));
         } catch (Exception e) {
@@ -144,7 +175,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<Book> createProduct(@RequestBody Book book) {
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
         try {
             ResponseEntity
                     .status(HttpStatus.CREATED)
@@ -171,7 +202,7 @@ public class BookController {
     }
 
     @DeleteMapping("/books/{id}")
-    public ResponseEntity<Book> deleteProduct(@PathVariable("id") long id) {
+    public ResponseEntity<Book> deleteBook(@PathVariable("id") long id) {
         try {
             bookService.delete(id);
             ResponseEntity.noContent();
