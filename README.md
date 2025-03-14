@@ -215,3 +215,9 @@ public class BookController {
 ```
 
 ## 구현(API Test)
+### GET_POST
+![GET_POST](https://github.com/user-attachments/assets/cd55dae9-f545-4706-a2fe-1b063e988c3b)
+
+### PUT_DELETE
+![PUT_DELETE](https://github.com/user-attachments/assets/8110ba34-7820-4cf0-8cd7-42849473d915)
+
