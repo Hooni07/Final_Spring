@@ -17,7 +17,7 @@ public class BookController {
     BookServiceImpl bookService;
 
     @GetMapping("/books/{id}")
-    public ResponseEntity<Optional<Book>> getProductById(@PathVariable("id") long id) {
+    public ResponseEntity<Optional<Book>> getBookById(@PathVariable("id") long id) {
         try {
             return ResponseEntity.ok(bookService.findById(id));
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<Book> createProduct(@RequestBody Book book) {
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
         try {
             ResponseEntity
                     .status(HttpStatus.CREATED)
@@ -54,7 +54,7 @@ public class BookController {
     }
 
     @DeleteMapping("/books/{id}")
-    public ResponseEntity<Book> deleteProduct(@PathVariable("id") long id) {
+    public ResponseEntity<Book> deleteBook(@PathVariable("id") long id) {
         try {
             bookService.delete(id);
             ResponseEntity.noContent();

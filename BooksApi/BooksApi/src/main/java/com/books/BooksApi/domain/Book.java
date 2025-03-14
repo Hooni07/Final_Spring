@@ -21,8 +21,8 @@ public class Book {
 
 
     // 생성자 생성
-    public Book(String productName, int price, String writer) {
-        this.bookName = productName;
+    public Book(String bookName, int price, String writer) {
+        this.bookName = bookName;
         this.price = price;
         this.writer = writer;
     }

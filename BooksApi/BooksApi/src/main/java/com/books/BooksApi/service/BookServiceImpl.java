@@ -33,9 +33,9 @@ public class BookServiceImpl implements BookService{
     @Override
     public Optional<Book> findById(Long id){
         try {
-            Optional<Book> productData = bookRepository.findById(id);
-            if(productData.isPresent()) {
-                return productData;
+            Optional<Book> bookData = bookRepository.findById(id);
+            if(bookData.isPresent()) {
+                return bookData;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,14 +46,14 @@ public class BookServiceImpl implements BookService{
     @Override
     public Book update(Long id, Book book){
         try {
-            Optional<Book> productData = bookRepository.findById(id);
-            if(productData.isPresent()) {
-                Book _product = productData.get();
-                _product.setBookName(book.getBookName());
-                _product.setPrice(book.getPrice());
-                _product.setWriter(book.getWriter());
-                bookRepository.save(_product);
-                return _product;
+            Optional<Book> bookData = bookRepository.findById(id);
+            if(bookData.isPresent()) {
+                Book _book = bookData.get();
+                _book.setBookName(book.getBookName());
+                _book.setPrice(book.getPrice());
+                _book.setWriter(book.getWriter());
+                bookRepository.save(_book);
+                return _book;
             } else {
                 return null;
             }
