@@ -19,12 +19,29 @@ public class Book {
     @Column(name = "writer")
     private String writer;
 
-
     // 생성자 생성
+    public Book() {}
+
     public Book(String bookName, int price, String writer) {
         this.bookName = bookName;
         this.price = price;
         this.writer = writer;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public int getPrice() {
@@ -41,21 +58,5 @@ public class Book {
 
     public void setWriter(String writer) {
         this.writer = writer;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
